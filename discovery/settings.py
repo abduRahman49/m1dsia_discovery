@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'brique1',
-    'bibliotheque'
+    'bibliotheque',
+    'gestion_livres',
 ]
 
 MIDDLEWARE = [
@@ -56,7 +57,7 @@ ROOT_URLCONF = 'discovery.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': os.path.join(BASE_DIR, "templates"), # dossier où Django cherche les templates
+        'DIRS': [BASE_DIR / "templates"], # dossier où Django cherche les templates
         'APP_DIRS': True, # dossier templates pour chaque application
         'OPTIONS': {
             'context_processors': [

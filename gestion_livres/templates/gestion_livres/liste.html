@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste livres</title>
+</head>
+<body>
+    <table>
+        <th>Titre</th>
+        <th>Auteur</th>
+        <th>Annee</th>
+        <th></th>
+        <th></th>
+    {% for livre in livres %}
+        <tr>
+            <td>{{ livre.titre }}</td>
+            <td>{{ livre.auteur }}</td>
+            <td>{{ livre.annee }}</td>
+            <td>
+                <a href="{% url 'detail-livre' livre.pk %}">Détail</a>
+            </td>
+            <td>
+                <a href="{% url 'update-livre' livre.pk %}">Mettre  jour</a>
+            </td>
+        </tr>
+    {% endfor %}
+    </table>
+</body>
+</html>

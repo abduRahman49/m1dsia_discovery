@@ -1,0 +1,19 @@
+{% extends 'gestion_livres/base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% block content %}
+    <form action="{% url 'update-livre' livre.pk %}" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <button type="submit">Mettre à jour</button>
+    </form>
+    {% endblock %}
+</body>
+</html>
