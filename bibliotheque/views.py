@@ -13,6 +13,7 @@ def hello(request):
     context = {"nom": "seye", "prenom": "abdou"}
     return render(request, 'bibliotheque/index.html', context)
 
+
 @csrf_exempt
 def bonjour_view(request, username):
     return HttpResponse(f"Bonjour {username}" if username else "Bonjour Anonyme")

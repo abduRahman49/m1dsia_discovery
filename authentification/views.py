@@ -1,14 +1,36 @@
 from django.shortcuts import render, redirect
 from django.views import View
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from .forms import RegistrationForm, LoginForm
+from .forms import RegistrationForm, LoginForm, PasswordChangeForm
 
 
 def index_view(request):
     return render(request, "auth/index.html")
 
+
+def logout_view(request):
+    logout(request)
+    return redirect("login")
+
+
+class UpdatePasswordView(View):
+
+    def get(self, request):
+        form = PasswordChangeForm()
+        context = {"form": form}
+        return render(request, "auth/change_password.html", context)
+    
+    def post(self, request):
+        # récupérer l'utilisateur courant
+        user = request.user
+        print("Utilisateur connecté", user)
+        # récupérer le nouveau de passe
+        password = request.POST.get("password")
+        user.set_password(password)
+        user.save()
+        return redirect("login")
 
 class LoginView(View):
 

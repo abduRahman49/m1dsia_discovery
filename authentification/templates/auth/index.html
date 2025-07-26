@@ -8,6 +8,10 @@
 <body>
 
     <p>Bonjour {{ request.user.username }}, vous êtes bien connecté!</p>
+
+
+    <a href="{% url 'logout' %}">Se deconnecter</a>
+    <a href="{% url 'update-password' %}">Changer de mot de passe</a>
     
 </body>
 </html>
