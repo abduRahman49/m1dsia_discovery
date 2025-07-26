@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'brique1',
     'bibliotheque',
     'gestion_livres',
+    'authentification',
 ]
 
 MIDDLEWARE = [

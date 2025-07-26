@@ -22,4 +22,5 @@ urlpatterns = [
     path('brique1/', include('brique1.urls')),
     path('bibliotheque/', include('bibliotheque.urls')),
     path('livres/', include('gestion_livres.urls')),
+    path('authentification/', include('authentification.urls')),
 ]
