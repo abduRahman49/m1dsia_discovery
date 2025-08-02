@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views import View
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .forms import RegistrationForm, LoginForm, PasswordChangeForm
@@ -63,10 +63,14 @@ class RegistrationView(View):
         username = request.POST.get("username")
         email = request.POST.get("email")
         password = request.POST.get("password")
+        role = request.POST.get("role")
+        #récupération du rôle
+        role = Group.objects.filter(name=role).first()
         # création de l'utilisateur
-        User.objects.create_user(
+        user = User.objects.create_user(
             username=username,
             password=password,
-            email=email
+            email=email,
         )
+        user.groups.add(role)
         return redirect("login")

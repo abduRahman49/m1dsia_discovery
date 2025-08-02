@@ -127,3 +127,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # AUTH_USER_MODEL
 CSRF_COOKIE_SECURE = False
+
+# Personnalisation de la classe d'authentification
+# AUTH_USER_MODEL = "authentification.CustomUser"

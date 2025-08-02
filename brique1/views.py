@@ -2,6 +2,7 @@ from django.shortcuts import render
 # Disable CSRF checks
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import permission_required
 
 from django.views import View
 from django.http import HttpResponse
@@ -25,3 +26,12 @@ class HiView(View):
 
     def delete(self, request, *args, **kwargs):
         return HttpResponse("Handler pour méthode DELETE")
+
+
+@permission_required("brique1:valider_tache")
+def responsabe_dashboard_view(request):
+    return render(request, "brique1/responsable.html")
+
+@permission_required("brique1:consulter_tache")
+def membre_dashboard_view(request):
+    return render(request, "brique1/membre.html")
