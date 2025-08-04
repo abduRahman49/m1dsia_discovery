@@ -28,10 +28,10 @@ class HiView(View):
         return HttpResponse("Handler pour méthode DELETE")
 
 
-@permission_required("brique1:valider_tache")
+@permission_required("brique1.valider_tache")
 def responsabe_dashboard_view(request):
     return render(request, "brique1/responsable.html")
 
-@permission_required("brique1:consulter_tache")
+@permission_required("brique1.consulter_tache")
 def membre_dashboard_view(request):
     return render(request, "brique1/membre.html")

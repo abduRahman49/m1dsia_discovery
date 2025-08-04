@@ -42,8 +42,9 @@ class LoginView(View):
     def post(self, request):
         username = request.POST.get("username")
         password = request.POST.get("password")
-        user = authenticate(username=username, password=password)
+        user = authenticate(request, username=username, password=password)
         if user is not None:
+            print("User groups", user.groups.all())
             login(request, user)
             return redirect("index")
 
@@ -64,13 +65,15 @@ class RegistrationView(View):
         email = request.POST.get("email")
         password = request.POST.get("password")
         role = request.POST.get("role")
+        print("Rôle de l'utilisateur", role)
         #récupération du rôle
-        role = Group.objects.filter(name=role).first()
+        group = Group.objects.filter(name=role).first()
+        print("Group sur lequel affecter l'utilisateur", group)
         # création de l'utilisateur
         user = User.objects.create_user(
             username=username,
             password=password,
             email=email,
         )
-        user.groups.add(role)
+        user.groups.add(group)
         return redirect("login")
